@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.nuu.cathay_interview.ui.main.MainFragment"
+        android:label="@string/title_zoo"
+        tools:layout="@layout/main_fragment">
+        <action
+            android:id="@+id/action_mainFragment_to_summaryFragment"
+            app:destination="@id/districtDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/districtDetailFragment"
+        android:name="com.nuu.cathay_interview.ui.main.DistrictDetailFragment"
+        tools:layout="@layout/district_detail_fragment">
+        <action
+            android:id="@+id/action_districtDetailFragment_to_plantFragment"
+            app:destination="@id/plantFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/plantFragment"
+        android:name="com.nuu.cathay_interview.ui.main.PlantFragment"
+        tools:layout="@layout/plant_fragment">
+    </fragment>
+</navigation>

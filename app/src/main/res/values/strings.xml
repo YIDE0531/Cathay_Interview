@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Cathay_Interview</string>
+
+<!--    title name-->
+    <string name="title_zoo">台北市立動物園</string>
+    <string name="order_summary">管場</string>
 </resources>
