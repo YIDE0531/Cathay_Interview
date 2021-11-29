@@ -9,18 +9,19 @@ import android.view.ViewGroup
 import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nuu.cathay_interview.MainActivity
 import com.nuu.cathay_interview.adapter.PlantAdapter
 import com.nuu.cathay_interview.databinding.DistrictDetailFragmentBinding
-import com.nuu.cathay_interview.model.DistrictItemResults
 
 
 class DistrictDetailFragment : Fragment() {
     private val districtDetailViewModel: DistrictDetailViewModel by activityViewModels()
     private lateinit var districtDetailBinding: DistrictDetailFragmentBinding
     private lateinit var plantAdapter: PlantAdapter
+    private val args: DistrictDetailFragmentArgs by navArgs()
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -39,14 +40,14 @@ class DistrictDetailFragment : Fragment() {
             districtDetailFragment = this@DistrictDetailFragment
         }
 
-        val params = arguments?.getSerializable("item") as DistrictItemResults
+        val params = args.districtItemResults
         districtDetailBinding.item = params
-        (activity as MainActivity).supportActionBar?.title = params.eName
-        districtDetailViewModel.getPlantItem(params.eName)
+        (activity as MainActivity).supportActionBar?.title = params?.eName
+        districtDetailViewModel.getPlantItem(params?.eName)
         setRecyclerViewAdapter()
-        setLink(params.eUrl ?: "", "在網頁開啟")
+        setLink(params?.eUrl ?: "", "在網頁開啟")
 
-        if (params.eMemo.isNullOrEmpty()){
+        if (params?.eMemo.isNullOrEmpty()){
             districtDetailBinding.tvDistrictDate.visibility = View.GONE
         }
     }
@@ -63,7 +64,6 @@ class DistrictDetailFragment : Fragment() {
         plantAdapter = PlantAdapter(districtDetailViewModel, context)
         districtDetailBinding.plantRecyclerView.apply {
             setHasFixedSize(true)
-//            layoutManager = GridLayoutManager(context, 4)
             layoutManager = LinearLayoutManager(context)
             addItemDecoration(  //加入底線
                     DividerItemDecoration(

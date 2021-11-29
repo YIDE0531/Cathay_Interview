@@ -7,13 +7,14 @@ import android.view.ViewGroup
 import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.navArgs
 import com.nuu.cathay_interview.MainActivity
 import com.nuu.cathay_interview.databinding.PlantFragmentBinding
-import com.nuu.cathay_interview.model.PlantItemResults
 
 class PlantFragment : Fragment() {
     private val plantViewModel: PlantViewModel by activityViewModels()
     private lateinit var plantBinding: PlantFragmentBinding
+    private val args: PlantFragmentArgs by navArgs()
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -32,8 +33,8 @@ class PlantFragment : Fragment() {
             plantFragment = this@PlantFragment
         }
 
-        val params = arguments?.getSerializable("item") as PlantItemResults
+        val params = args.item
         plantBinding.item = params
-        (activity as MainActivity).supportActionBar?.title = params.fNameCh
+        (activity as MainActivity).supportActionBar?.title = params?.fNameCh
     }
 }

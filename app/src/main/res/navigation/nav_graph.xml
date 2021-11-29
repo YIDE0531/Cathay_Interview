@@ -21,6 +21,11 @@
         android:id="@+id/districtDetailFragment"
         android:name="com.nuu.cathay_interview.ui.main.DistrictDetailFragment"
         tools:layout="@layout/district_detail_fragment">
+        <argument
+            android:name="districtItemResults"
+            app:argType="com.nuu.cathay_interview.model.DistrictItemResults"
+            android:defaultValue="@null"
+            app:nullable="true"/>
         <action
             android:id="@+id/action_districtDetailFragment_to_plantFragment"
             app:destination="@id/plantFragment"
@@ -33,5 +38,10 @@
         android:id="@+id/plantFragment"
         android:name="com.nuu.cathay_interview.ui.main.PlantFragment"
         tools:layout="@layout/plant_fragment">
+        <argument
+            android:name="item"
+            app:argType="com.nuu.cathay_interview.model.PlantItemResults"
+            android:defaultValue="@null"
+            app:nullable="true"/>
     </fragment>
 </navigation>

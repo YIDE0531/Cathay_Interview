@@ -10,6 +10,7 @@ import com.nuu.cathay_interview.R
 import com.nuu.cathay_interview.databinding.ListItemPlantBinding
 import com.nuu.cathay_interview.model.PlantItem
 import com.nuu.cathay_interview.model.PlantItemResults
+import com.nuu.cathay_interview.ui.main.DistrictDetailFragmentDirections
 import com.nuu.cathay_interview.ui.main.DistrictDetailViewModel
 
 class PlantAdapter (private val viewModel: DistrictDetailViewModel, private val context: Context?): RecyclerView.Adapter<PlantAdapter.PlantHolder>() {
@@ -48,9 +49,10 @@ class PlantAdapter (private val viewModel: DistrictDetailViewModel, private val 
             binding.executePendingBindings()
 
             binding.constMain.setOnClickListener {
-                val bundle = Bundle()
-                bundle.putSerializable("item", data)
-                Navigation.findNavController(binding.constMain).navigate(R.id.action_districtDetailFragment_to_plantFragment, bundle)
+                val action = DistrictDetailFragmentDirections.actionDistrictDetailFragmentToPlantFragment(
+                    item = data
+                )
+                Navigation.findNavController(binding.constMain).navigate(action)
             }
         }
     }

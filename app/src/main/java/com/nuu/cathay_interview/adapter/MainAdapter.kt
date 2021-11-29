@@ -1,17 +1,15 @@
 package com.nuu.cathay_interview.adapter
 
 import android.content.Context
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
 
 import androidx.recyclerview.widget.RecyclerView
-import com.nuu.cathay_interview.R
 import com.nuu.cathay_interview.databinding.ListItemDistrictBinding
 import com.nuu.cathay_interview.model.DistrictItem
 import com.nuu.cathay_interview.model.DistrictItemResults
+import com.nuu.cathay_interview.ui.main.MainFragmentDirections
 import com.nuu.cathay_interview.ui.main.MainViewModel
 
 class MainAdapter(private val viewModel: MainViewModel, private val context: Context?): RecyclerView.Adapter<MainAdapter.MainHolder>() {
@@ -50,9 +48,10 @@ class MainAdapter(private val viewModel: MainViewModel, private val context: Con
             binding.executePendingBindings()
 
             binding.constMain.setOnClickListener {
-                val bundle = Bundle()
-                bundle.putSerializable("item", data)
-                Navigation.findNavController(binding.constMain).navigate(R.id.action_mainFragment_to_summaryFragment, bundle)
+                var action = MainFragmentDirections.actionMainFragmentToSummaryFragment(
+                    districtItemResults = data
+                )
+                Navigation.findNavController(binding.constMain).navigate(action)
             }
         }
     }
